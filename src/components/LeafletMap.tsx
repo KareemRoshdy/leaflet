@@ -10,7 +10,6 @@ interface LeafletMapProps {
   selectedCars: Car[];
 }
 
-/* car icon */
 const carIcon = new L.Icon({
   iconUrl:
     "https://storage.googleapis.com/neom_sharex_images/images/2025-07-01T09-17-19.471Z.webp",
@@ -19,7 +18,6 @@ const carIcon = new L.Icon({
   popupAnchor: [0, -35],
 });
 
-/* zoom to last selected car */
 function FlyToLastSelected({ cars }: { cars: Car[] }) {
   const map = useMap();
 
@@ -31,7 +29,7 @@ function FlyToLastSelected({ cars }: { cars: Car[] }) {
     const lat = lastCar.current_location.coordinates[1];
     const lng = lastCar.current_location.coordinates[0];
 
-    map.flyTo([lat, lng], 15, { duration: 1.2 }); // zoom 15، duration سلس
+    map.flyTo([lat, lng], 15, { duration: 1.2 });
   }, [cars, map]);
 
   return null;
@@ -75,7 +73,6 @@ const LeafletMap = ({ selectedCars }: LeafletMapProps) => {
         );
       })}
 
-      {/* Fly to last selected car */}
       <FlyToLastSelected cars={selectedCars} />
     </MapContainer>
   );
